@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE Client</title>
+</head>
+<body>
+
+<h1>Server-Sent Events (SSE) Client</h1>
+<div id="sse-data"></div>
+
+<script>
+    // Create an EventSource object to connect to the SSE server
+    const eventSource = new EventSource('http://127.0.0.1:8080/sse');
+
+    // Add event listener to handle messages received from the server
+    eventSource.addEventListener('message', function (event) {
+        // Extract data from the event
+        const eventData = event.data;
+        console.log("AYA AYA")
+        // Update the HTML content with the received data
+        const sseDataElement = document.getElementById('sse-data');
+        sseDataElement.innerHTML += eventData + '<br>';
+    });
+
+    // Add event listener to handle errors
+    eventSource.addEventListener('error', function (event) {
+        // Display error information
+        console.error('SSE error:', event);
+    });
+</script>
+
+</body>
+</html>

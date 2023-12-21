@@ -13,6 +13,7 @@ func main() {
 	db.Init()
 	r := mux.NewRouter()
 	r.HandleFunc("/post", controller.HandleDataPost)
+	r.HandleFunc("/sse", controller.SSE)
 	fmt.Println("Running at Port 8080")
 	http.ListenAndServe(":8080", r)
 }
