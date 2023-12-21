@@ -16,7 +16,6 @@ import (
 
 func HandleDataPost(w http.ResponseWriter, r *http.Request) {
 	var wg sync.WaitGroup
-	fmt.Println("AYA")
 	var incomingScore model.AdminData
 
 	wg.Add(1)
@@ -52,7 +51,7 @@ func HandleDataPost(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			fmt.Printf("Failed to produce message: %v\n", err)
 		}
-		
+
 		jsonPayload, err := json.Marshal(incomingScore)
 		if err != nil {
 			fmt.Println(err)
@@ -68,7 +67,7 @@ func HandleDataPost(w http.ResponseWriter, r *http.Request) {
 			fmt.Printf("Failed to produce message: %v\n", err)
 			os.Exit(1)
 		}
-		<- delivery_chan
+		<-delivery_chan
 	}()
 
 	wg.Wait()

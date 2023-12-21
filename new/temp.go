@@ -32,18 +32,19 @@ func main() {
 			"group.id":          "cons-1",
 			"auto.offset.reset": "smallest",
 		})
-		// cons_ch <- "Cons bangaya"
+
 		if err != nil {
 			log.Fatal(err)
 		}
+
 		err = consumer.Subscribe(topic, nil)
+
 		if err != nil {
 			log.Fatal(err)
 		}
 
 		for {
 			ev := consumer.Poll(100)
-
 			switch e := ev.(type) {
 			case *kafka.Message:
 				fmt.Printf("Consumed message : %+s\n", string(e.Value))
